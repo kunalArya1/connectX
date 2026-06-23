@@ -1,13 +1,7 @@
-import dotenv from "dotenv";
-dotenv.config({});
-import express, { type Application } from "express";
+import app from "./app.js";
 import { connectDB } from "./config/db.js";
-import auhtRouter from "./routes/auth.routes.js";
 
-const app: Application = express();
 const PORT = process.env.PORT || 8000;
-
-app.use("/auth", auhtRouter);
 
 connectDB()
   .then(() => {
