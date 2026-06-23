@@ -10,6 +10,25 @@ export interface User {
   about: string;
   age: number;
   gender: Gender;
+  isPasswordCorrect(password: string): boolean;
+  generateAccessToken(): string;
+  generateRefreshToken(): string;
+}
+
+export interface UserSignUp {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+}
+export interface UserSignIn {
+  email: string;
+  password: string;
+}
+
+export interface UserChangePassword {
+  oldPassword: string;
+  newPassword: string;
 }
 
 export interface Connections {
@@ -20,4 +39,11 @@ export interface Connections {
     type: mongoose.Schema.Types.ObjectId;
   };
   status: string;
+}
+
+import { Types } from "mongoose";
+
+export interface JwtPayload {
+  _id: Types.ObjectId;
+  email: string;
 }

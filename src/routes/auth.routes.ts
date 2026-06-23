@@ -1,25 +1,21 @@
 import { Router, type Request, type Response } from "express";
+import {
+  signUp,
+  signIn,
+  signOut,
+  changePassword,
+  forgotPassword,
+  resetPassword,
+} from "../controllers/auth.controllers.js";
+import isLoggedIn from "../middlewares/auth.middlewares.js";
 
 const router: Router = Router();
-import User from "../models/user.model.js";
 
-router.post("/sign-up", async (req: Request, res: Response) => {
-  //   const { id, username, email, password } = req.body;
-
-  const myUser = {
-    id: 1,
-    username: "Kunal arya",
-    email: "kunal@google.com",
-    password: "google@123",
-  };
-
-  const user = new User(myUser);
-  await user.save();
-
-  res.status(201).json({
-    message: "user created succesfully",
-    user: user,
-  });
-});
+router.route("/sign-up").post(signUp);
+router.route("/sing-up").post(signIn);
+router.route("/sign-out").post(isLoggedIn, signOut);
+router.route("/change-password").post(isLoggedIn, changePassword);
+router.route("/forgot-password").post(forgotPassword);
+router.route("/reset-password").post(resetPassword);
 
 export default router;
