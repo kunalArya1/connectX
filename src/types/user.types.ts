@@ -10,6 +10,8 @@ export interface User {
   about: string;
   age: number;
   gender: Gender;
+  resetPasswordToken: string;
+  resetPasswordExpires: number;
   isPasswordCorrect(password: string): boolean;
   generateAccessToken(): string;
   generateRefreshToken(): string;

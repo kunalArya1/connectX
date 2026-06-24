@@ -16,6 +16,6 @@ router.route("/sing-up").post(signIn);
 router.route("/sign-out").post(isLoggedIn, signOut);
 router.route("/change-password").post(isLoggedIn, changePassword);
 router.route("/forgot-password").post(forgotPassword);
-router.route("/reset-password").post(resetPassword);
+router.route("/reset-password/:token").post(resetPassword);
 
 export default router;

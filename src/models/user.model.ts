@@ -67,6 +67,12 @@ const userShcema = new Schema<User>(
         }
       },
     },
+    resetPasswordToken: {
+      type: String
+    },
+    resetPasswordExpires: {
+      type: Number
+    }
   },
   {
     timestamps: true,
