@@ -34,13 +34,11 @@ export interface UserChangePassword {
 }
 
 export interface Connections {
-  fromUserId: {
-    type: mongoose.Schema.Types.ObjectId;
-  };
-  toUserId: {
-    type: mongoose.Schema.Types.ObjectId;
-  };
-  status: string;
+  fromUserId: Types.ObjectId;
+  toUserId: Types.ObjectId;
+  status: "pass" | "like" | "accept" | "reject";
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 import { Types } from "mongoose";

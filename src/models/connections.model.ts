@@ -1,7 +1,8 @@
 import mongoose, { Schema } from "mongoose";
 import type { Connections } from "../types/user.types.js";
+import type { NextFunction } from "express";
 
-const todoModel = new Schema<Connections>(
+const connectionModel = new Schema<Connections>(
   {
     fromUserId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -25,4 +26,10 @@ const todoModel = new Schema<Connections>(
   { timestamps: true },
 );
 
-export default mongoose.model("TodoSchema", todoModel);
+connectionModel.pre("save", function (next) {
+  if (this.toUserId.equals(this.fromUserId)) {
+    throw new Error("Both user id can't be same");
+  }
+});
+
+export default mongoose.model("TodoSchema", connectionModel);
